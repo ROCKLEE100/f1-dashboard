@@ -1,0 +1,5 @@
+apiVersion: v2
+name: f1-dashboard
+description: F1 Data Dashboard Application
+version: 1.0.0
+appVersion: "1.0.0"

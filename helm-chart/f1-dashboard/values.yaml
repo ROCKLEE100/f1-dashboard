@@ -1,0 +1,9 @@
+backend:
+  image: aditya1243/f1-backend
+  version: v7
+
+frontend:
+  image: aditya1243/f1-frontend
+  version: v7
+
+replicas: 1
