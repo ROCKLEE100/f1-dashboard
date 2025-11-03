@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: aditya1243/f1-backend:v6  # ← UPDATE THIS!
+          image: aditya1243/f1-backend:v6  
           ports:
             - containerPort: 8000
           env:

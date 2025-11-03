@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: aditya1243/f1-frontend:v6  # ← UPDATE THIS!
+          image: aditya1243/f1-frontend:v6  
           ports:
             - containerPort: 5173
 ---

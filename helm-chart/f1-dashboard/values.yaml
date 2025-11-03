@@ -1,9 +1,9 @@
 backend:
-  image: aditya1243/f1-backend
-  version: v7
+  image: gcr.io/llmops-473108/f1-backend
+  version: latest
 
 frontend:
-  image: aditya1243/f1-frontend
-  version: v7
+  image: gcr.io/llmops-473108/f1-frontend
+  version: latest
 
 replicas: 1

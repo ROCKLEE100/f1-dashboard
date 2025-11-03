@@ -24,6 +24,13 @@ spec:
               value: "0.0.0.0"
             - name: API_PORT
               value: "8000"
+            - name: CORS_ORIGINS
+              value: "*"
+            - name: DATABASE_PATH
+              value: "/app/f1_database.db"
+            - name: F1_API_BASE_URL
+              value: "https://api.jolpi.ca/ergast/f1"
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service

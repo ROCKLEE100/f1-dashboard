@@ -1,5 +1,6 @@
 apiVersion: v2
 name: f1-dashboard
-description: F1 Data Dashboard Application
+description: F1 Dashboard Helm Chart
+type: application
 version: 1.0.0
-appVersion: "1.0.0"
+appVersion: "1.0"
