@@ -13,7 +13,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,18 +26,28 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Configure Docker
+      - name: Configure Docker for GCR
         run: gcloud auth configure-docker
 
       - name: Build Backend Image
         run: |
           docker build -t gcr.io/$PROJECT_ID/f1-backend:$GITHUB_SHA ./backend
+          docker tag gcr.io/$PROJECT_ID/f1-backend:$GITHUB_SHA gcr.io/$PROJECT_ID/f1-backend:latest
+
+      - name: Push Backend Image
+        run: |
           docker push gcr.io/$PROJECT_ID/f1-backend:$GITHUB_SHA
+          docker push gcr.io/$PROJECT_ID/f1-backend:latest
 
       - name: Build Frontend Image
         run: |
           docker build -t gcr.io/$PROJECT_ID/f1-frontend:$GITHUB_SHA ./frontend
+          docker tag gcr.io/$PROJECT_ID/f1-frontend:$GITHUB_SHA gcr.io/$PROJECT_ID/f1-frontend:latest
+
+      - name: Push Frontend Image
+        run: |
           docker push gcr.io/$PROJECT_ID/f1-frontend:$GITHUB_SHA
+          docker push gcr.io/$PROJECT_ID/f1-frontend:latest
 
       - name: Get GKE credentials
         uses: google-github-actions/get-gke-credentials@v2
@@ -59,5 +69,13 @@ jobs:
             --set frontend.version=$GITHUB_SHA \
             --wait --timeout 5m
 
-      - name: Show Services
-        run: kubectl get services
+      - name: Show Deployment Status
+        run: |
+          echo "=== SERVICES ==="
+          kubectl get services
+          echo ""
+          echo "=== PODS ==="
+          kubectl get pods
+          echo ""
+          echo "=== DEPLOYMENTS ==="
+          kubectl get deployments
