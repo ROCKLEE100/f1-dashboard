@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 from pydantic import BaseModel
 from typing import Optional, List
 import httpx
@@ -15,6 +16,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI(title="F1 Data Dashboard API")
+
+
+Instrumentator().instrument(app).expose(app)
 
 # Get configuration from environment variables
 
