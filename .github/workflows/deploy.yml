@@ -62,7 +62,7 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          helm upgrade --install f1-dashboard ./helm-chart \
+          helm upgrade --install f1-dashboard ./helm-chart/f1-dashboard \
             --set backend.image=gcr.io/$PROJECT_ID/f1-backend \
             --set backend.version=$GITHUB_SHA \
             --set frontend.image=gcr.io/$PROJECT_ID/f1-frontend \
