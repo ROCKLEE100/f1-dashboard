@@ -69,6 +69,10 @@ jobs:
             --set frontend.version=$GITHUB_SHA \
             --wait --timeout 5m
 
+      - name: Deploy Backend Monitoring
+        run: |
+          kubectl apply -f helm-chart/f1-dashboard/templates/servicemonitor.yaml
+
       - name: Show Deployment Status
         run: |
           echo "=== SERVICES ==="
